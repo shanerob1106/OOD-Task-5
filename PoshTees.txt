@@ -1,0 +1,23 @@
+TUTU DU MONDE,Bébe Neva Tulle Dress,3-6,155,Indigo;Girls;Bedecked in pearls and sequins with a built-in cotton nappy cover;100% knitted nylon,5,TDM9111
+BURBERRY Kids,Polo Shirt Dress,18-24,299.99,White with checked collar;Girls;A polo shirt dress in cotton piqué with a Burberry Check collar;100% Cotton,10,BUR7654
+BURBERRY Kids,Quilted Mini Otis Jacket,12-18,152,Coral Rose;Girls;Quilted style with a contrast cord collar and oversized;100% Polyester,1,BUR7777
+BURBERRY Kids,EKD Tim Romper,12-18,105,White;Boys;Designed with premium fabric to offer unparalleled comfort for your baby;100% Cotton,0,BUR7001
+KENZO Kids,Tiger Sweatshirt and Joggers,9-12,167.50,White;Unisex;Sweater with branded print on the front. Fleece jogging pants has elastic waist with drawstrings;60% Cotton 40% Polyester,5,KEN1111
+Polo Ralph Lauren,Flag Sweater,0-3,125,White;Boys;Combed cotton sweater features an intarsia-knit historical American flag on the front;100% Cotton,3,PRL1010
+
+
+Notes:
+Colour
+Gender
+Description
+Material
+
+
+0-3 upto 3 months
+3-6 three to six months
+9-6 six to nine months
+9-12 nine to 12 months
+12-18 12 to 18 months
+18-24 18 to 24 months
+
+label,product,size,price,notes,stock,stockcode
