@@ -20,6 +20,7 @@ public class Garment {
         this.name = name;
         this.colour = colour;
         this.description = description;
+        this.material = material;
         this.stock = stock;
     }
 
@@ -70,7 +71,7 @@ public class Garment {
     }
 
     public String getSize() {
-        return id.split("_")[2].replace("-", " to " + "months");
+        return id.split("_")[2] + (" months");
     }
 
     public String getFormattedPrice() {

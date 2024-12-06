@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class GarmentTableModel extends AbstractTableModel {
 
-    private String[] columnNames = {"ID", "Make", "Name", "Colour", "Price", "Stock"};
+    private String[] columnNames = {"Make", "Garment", "Gender", "Size", "Colour", "Material", "Price", "Stock"};
     private List<Garment> garments;
 
     public GarmentTableModel(List<Garment> garments) {
@@ -38,18 +38,22 @@ public class GarmentTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Garment garment = garments.get(rowIndex);
-        switch (columnIndex) {
+        switch (columnIndex) {            
             case 0:
-                return garment.getId();
+                return garment.getMake();
             case 1:
                 return garment.getName();
             case 2:
-                return garment.getMake();
+                return garment.getGender();
             case 3:
-                return garment.getColour();
+                return garment.getSize();
             case 4:
-                return garment.getFormattedPrice();
+                return garment.getColour();
             case 5:
+                return garment.getMaterial();
+            case 6:
+                return garment.getFormattedPrice();
+            case 7:
                 return garment.getStock();
             default:
                 return null;

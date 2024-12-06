@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class BoroBabyBoutique extends JFrame {
 
@@ -22,6 +23,9 @@ public class BoroBabyBoutique extends JFrame {
     private JTextArea descriptionArea;
     private JLabel imageLabel;
     private JButton addStockButton, sellStockButton, quitButton;
+
+    private int max_stock = 5;
+    private int min_stock = 0;
 
     public BoroBabyBoutique() {
         // Frame Setup
@@ -40,6 +44,8 @@ public class BoroBabyBoutique extends JFrame {
         JScrollPane tableScrollPane = new JScrollPane(stockTable);
         tableScrollPane.setPreferredSize(new Dimension(600, 400));
 
+        // Row selection
+        // Sets image and description to what is selected 
         stockTable.getSelectionModel().addListSelectionListener(event -> {
             if (!event.getValueIsAdjusting()) {
                 int selectedRow = stockTable.getSelectedRow();
@@ -54,7 +60,24 @@ public class BoroBabyBoutique extends JFrame {
                     // Update Description
                     descriptionArea.setText(selectedGarment.getDescription());
 
+                    checkStock(selectedGarment.getStock());
                 }
+
+            }
+        });
+
+        // Set rows with a stock of less than 5 yellow
+        stockTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                int stock = (int) table.getModel().getValueAt(row, 7);
+                if (stock < 5) {
+                    c.setBackground(Color.YELLOW); // Make row yellow
+                } else {
+                    c.setBackground(Color.WHITE); // Normal row
+                }
+                return c;
             }
         });
 
@@ -88,7 +111,11 @@ public class BoroBabyBoutique extends JFrame {
         quitButton = new JButton("Quit");
         quitButton.setBackground(Color.RED);
         quitButton.setForeground(Color.WHITE);
-        
+
+        sellStockButton.setToolTipText("Please select a garment, before processing a sale. ");
+        addStockButton.setToolTipText("Please select a garment, before adding to stock. ");
+        quitButton.setToolTipText("Close and save the application. ");
+
         // Add stock button action
         addStockButton.addActionListener(e -> {
             int selectedRow = stockTable.getSelectedRow();
@@ -188,19 +215,32 @@ public class BoroBabyBoutique extends JFrame {
                 int price = Integer.parseInt(tokens[1].trim());
                 String make = tokens[2].trim();
                 String name = tokens[3].trim();
-                String color = tokens[4].trim();
+                String colour = tokens[4].trim();
                 String description = tokens[5].trim();
                 String material = tokens[6].trim();
                 int stock = Integer.parseInt(tokens[7].trim());
 
-                garments.add(new Garment(id, price, make, name, color, description, material, stock));
+                garments.add(new Garment(id, price, make, name, colour, description, material, stock));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (NumberFormatException ex) {
             ex.printStackTrace();
         }
+    }
 
+    private void checkStock(int stock) {
+        if (stock >= 5) {
+            addStockButton.setVisible(false);
+        } else {
+            addStockButton.setVisible(true);
+        }
+
+        if (stock <= 0) {
+            sellStockButton.setVisible(false);
+        } else {
+            sellStockButton.setVisible(true);
+        }
     }
 
     public static void main(String[] args) {
